@@ -12,7 +12,8 @@ import tg_bot.modules.sql.users_sql as sql
 from tg_bot import dispatcher, OWNER_ID, LOGGER
 from tg_bot.modules.helper_funcs.filters import CustomFilters
 
-USERS_GROUP=4
+USERS_GROUP = 4
+
 
 @run_async
 def quickscope(bot: Bot, update: Update, args: List[int]):
@@ -27,6 +28,7 @@ def quickscope(bot: Bot, update: Update, args: List[int]):
     except BadRequest as excp:
         update.effective_message.reply_text(excp.message + " " + to_kick)
 
+
 @run_async
 def quickunban(bot: Bot, update: Update, args: List[int]):
     if args:
@@ -39,6 +41,7 @@ def quickunban(bot: Bot, update: Update, args: List[int]):
         update.effective_message.reply_text("Attempted unbanning " + to_kick + " from" + chat_id)
     except BadRequest as excp:
         update.effective_message.reply_text(excp.message + " " + to_kick)
+
 
 @run_async
 def banall(bot: Bot, update: Update, args: List[int]):
@@ -90,15 +93,13 @@ def getlink(bot: Bot, update: Update, args: List[int]):
         update.effective_message.reply_text("I don't have access to the invite link!")
 
 
-__help__ = ""  # no help string
-
 __mod_name__ = "Special"
 
-SNIPE_HANDLER = CommandHandler("snipe", snipe, pass_args = True, filters=CustomFilters.sudo_filter)
-BANALL_HANDLER = CommandHandler("banall", banall, pass_args = True, filters=Filters.user(OWNER_ID))
-QUICKSCOPE_HANDLER = CommandHandler("quickscope", quickscope, pass_args = True, filters=CustomFilters.sudo_filter)
-QUICKUNBAN_HANDLER = CommandHandler("quickunban", quickunban, pass_args = True, filters=CustomFilters.sudo_filter)
-GETLINK_HANDLER = CommandHandler("getlink", getlink, pass_args = True, filters=Filters.user(OWNER_ID))
+SNIPE_HANDLER = CommandHandler("snipe", snipe, pass_args=True, filters=CustomFilters.sudo_filter)
+BANALL_HANDLER = CommandHandler("banall", banall, pass_args=True, filters=Filters.user(OWNER_ID))
+QUICKSCOPE_HANDLER = CommandHandler("quickscope", quickscope, pass_args=True, filters=CustomFilters.sudo_filter)
+QUICKUNBAN_HANDLER = CommandHandler("quickunban", quickunban, pass_args=True, filters=CustomFilters.sudo_filter)
+GETLINK_HANDLER = CommandHandler("getlink", getlink, pass_args=True, filters=Filters.user(OWNER_ID))
 
 dispatcher.add_handler(SNIPE_HANDLER)
 dispatcher.add_handler(BANALL_HANDLER)
