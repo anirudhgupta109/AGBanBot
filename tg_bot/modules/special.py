@@ -87,7 +87,7 @@ def getlink(bot: Bot, update: Update, args: List[int]):
     chat = bot.getChat(chat_id)
     bot_member = chat.get_member(bot.id)
     if bot_member.can_invite_users:
-        invitelink = bot.exportChatInviteLink(chat_id)
+        invitelink = bot.get_chat(chat_id).invite_link
         update.effective_message.reply_text(invitelink)
     else:
         update.effective_message.reply_text("I don't have access to the invite link!")
